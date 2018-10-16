@@ -1,0 +1,49 @@
+<h1>Number Base Converter</h1>
+<p>Please input a decimal number to be converted to any base 2 to 36.</p>
+<%= form_with url: calculate_path, local: true do |form| %>
+  <p>
+    <%= form.label :input %>
+    <%= form.text_field :input %>
+  </p>
+  <p>
+    <%= form.label :from_base %>
+    <%= form.select :from_base, (2..36) %>
+  </p>
+  <p>
+    <%= form.label :to_base %>
+    <%= form.select :to_base, (2..36) %>
+  </p>
+  <p>
+    <%= form.submit "Calculate" %>
+  </p>
+<% end %>
+
+<% if @error %>
+  <h2>Error: Invalid inputs given.</h2>
+<% elsif @output %>
+  <h2><%= @input %> converted from base <%= @from_base %> to base <%= @to_base %>: <%= @output %></h2>
+<% end %>
+
+<h2>Calculation History</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Input</th>
+      <th>From Base</th>
+      <th>To Base</th>
+      <th>Result</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @history.each do |row| %>
+      <tr>
+        <td><%= row.input %></td>
+        <td><%= row.from_base %></td>
+        <td><%= row.to_base %></td>
+        <td><%= row.output %></td>
+        <td><%= row.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

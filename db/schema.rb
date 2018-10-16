@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_043226) do
+ActiveRecord::Schema.define(version: 2018_10_16_100206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "histories", force: :cascade do |t|
-    t.integer "input"
-    t.integer "base"
+    t.string "input"
+    t.integer "to_base"
     t.string "output"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "from_base"
   end
 
 end
